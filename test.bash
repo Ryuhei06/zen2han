@@ -9,7 +9,7 @@ ng () {
 
 res=0
 
-out=$(echo １ | ./zen2han)
-[ "${out}" = 1 ] || ng "$LINENO"
+out=$(echo １２３ | ./zen2han)
+[ "${out}" = 123 ] || ng "$LINENO"
 
 exit $res

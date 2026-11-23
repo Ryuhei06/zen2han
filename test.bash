@@ -21,4 +21,13 @@ out=$(echo "！？（）" | ./zen2han)
 out=$(echo "墨田区１－２－３" | ./zen2han)
 [ "${out}" = "墨田区1-2-3" ] || ng "$LINENO"
 
+out=$(echo "ｱｲｳ カレー" | ./zen2han)
+[ "${out}" = "ｱｲｳ カレー" ] || ng "$LINENO"
+
+out=$(echo -n "" | ./zen2han)
+[ "${out}" = "" ] || ng "$LINENO"
+
+out=$(printf '１\n２\n' | ./zen2han)
+[ "${out}" = "$(printf '1\n2')" ] || ng "$LINENO"
+
 exit $res

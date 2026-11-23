@@ -12,4 +12,7 @@ res=0
 out=$(echo １２３ | ./zen2han)
 [ "${out}" = 123 ] || ng "$LINENO"
 
+out=$(printf 'ＡＢＣ\xe3\x80\x80ｘｙｚ\n' | ./zen2han)
+[ "${out}" = "ABC xyz" ] || ng "$LINENO"
+
 exit $res

@@ -33,4 +33,10 @@ out=$(printf '１\n２\n' | ./zen2han)
 out=$(echo "１Ａ！" | ./zen2han -d)
 [ "${out}" = "1Ａ！" ] || ng "$LINENO"
 
+out=$(echo "１Ａ！" | ./zen2han -a)
+[ "${out}" = "１A！" ] || ng "$LINENO"
+
+out=$(echo "１Ａ！" | ./zen2han -s)
+[ "${out}" = "１Ａ!" ] || ng "$LINENO"
+
 exit $res

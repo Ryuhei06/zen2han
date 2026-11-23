@@ -1,0 +1,10 @@
+#!/usr/bin/python3
+# SPDX-FileCopyrightText: 2026 奈良隆平
+# SPDX-License-Identifier: BSD-3-Clause
+
+import sys
+
+table = str.maketrans("０１２３４５６７８９", "0123456789")
+
+for line in sys.stdin:
+    print(line.translate(table), end="")

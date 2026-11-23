@@ -6,17 +6,38 @@ import sys
 import argparse
 
 
+
 def make_table(use_digits, use_alphas, use_symbols):
-    
+    table = {}
+    for code in range(0xFF01, 0xFF5F):
+        half = chr(code - 0xFEE0)
+        if half.isdigit():
+            wanted = use_digits
+        elif half.isalpha():
+            wanted = use_alphas
+        else:
+            wanted = use_symbols
+        if wanted:
+            table[code] = half
+    if use_symbols:
+        table[0x3000] = " " 
+    return table
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-d", action="store_true")
+def main():
+    parser = argparse.ArgumentParser(description="全角の数字・英字・記号を半角にする")
+    args = parser.parse_args()
 
-args = parser.parse_args()
+   
+    sys.stdin.reconfigure(encoding="utf-8")
+ 
+    try:
+        for line in sys.stdin:
+            print(line.translate(table), end="")
+    except UnicodeDecodeError:
+        print("zen2han: 入力がUTF-8ではありません", file=sys.stderr)
+        sys.exit(1)
 
 
-table = make_table(args.d, args.a, args.s)
-
-for line in sys.stdin:
-    print(line.translate(table), end="")
+if __name__ == "__main__":
+    main()

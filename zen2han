@@ -3,8 +3,20 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import sys
+import argparse
 
-table = str.maketrans("０１２３４５６７８９", "0123456789")
+
+def make_table(use_digits, use_alphas, use_symbols):
+    
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", action="store_true")
+
+args = parser.parse_args()
+
+
+table = make_table(args.d, args.a, args.s)
 
 for line in sys.stdin:
     print(line.translate(table), end="")

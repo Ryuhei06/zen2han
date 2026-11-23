@@ -26,11 +26,19 @@ def make_table(use_digits, use_alphas, use_symbols):
 
 def main():
     parser = argparse.ArgumentParser(description="全角の数字・英字・記号を半角にする")
+    parser.add_argument("-d", action="store_true", help="数字だけ変換する")
+    parser.add_argument("-a", action="store_true", help="英字だけ変換する")
+    parser.add_argument("-s", action="store_true", help="記号とスペースだけ変換する")
     args = parser.parse_args()
 
-   
+    if not (args.d or args.a or args.s):
+        args.d = args.a = args.s = True
+
+    table = make_table(args.d, args.a, args.s)
+
     sys.stdin.reconfigure(encoding="utf-8")
- 
+    sys.stdout.reconfigure(encoding="utf-8")
+
     try:
         for line in sys.stdin:
             print(line.translate(table), end="")

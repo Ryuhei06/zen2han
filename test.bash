@@ -15,4 +15,10 @@ out=$(echo １２３ | ./zen2han)
 out=$(printf 'ＡＢＣ\xe3\x80\x80ｘｙｚ\n' | ./zen2han)
 [ "${out}" = "ABC xyz" ] || ng "$LINENO"
 
+out=$(echo "！？（）" | ./zen2han)
+[ "${out}" = "!?()" ] || ng "$LINENO"
+
+out=$(echo "墨田区１－２－３" | ./zen2han)
+[ "${out}" = "墨田区1-2-3" ] || ng "$LINENO"
+
 exit $res

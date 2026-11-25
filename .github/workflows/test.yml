@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2026 奈良隆平
+# SPDX-License-Identifier: BSD-3-Clause
+
+name: test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pythonのバージョンを表示
+        run: python3 --version
+      - name: テストを実行
+        run: ./test.bash

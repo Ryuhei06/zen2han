@@ -44,4 +44,11 @@ out=$(echo "１Ａ！" | ./zen2han -d -a)
 
 echo １ | ./zen2han -x > /dev/null 2>&1
 [ "$?" = 2 ] || ng "$LINENO"
+
+out=$(echo １ | ./zen2han -x 2> /dev/null)
+[ "${out}" = "" ] || ng "$LINENO"
+
+printf '\xff\n' | ./zen2han > /dev/null 2>&1
+[ "$?" = 1 ] || ng "$LINENO"
+
 exit $res

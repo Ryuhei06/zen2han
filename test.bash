@@ -39,4 +39,9 @@ out=$(echo "１Ａ！" | ./zen2han -a)
 out=$(echo "１Ａ！" | ./zen2han -s)
 [ "${out}" = "１Ａ!" ] || ng "$LINENO"
 
+out=$(echo "１Ａ！" | ./zen2han -d -a)
+[ "${out}" = "1A！" ] || ng "$LINENO"
+
+echo １ | ./zen2han -x > /dev/null 2>&1
+[ "$?" = 2 ] || ng "$LINENO"
 exit $res

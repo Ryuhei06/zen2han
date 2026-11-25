@@ -32,19 +32,17 @@ $ source ~/.bashrc
 ```
 $ echo "東京都墨田区１－２－３" | ./zen2han
 東京都墨田区1-2-3
-```　
-
+```
 ファイルを変換するときは、リダイレクトを使います。
 
 ```
-
 $ printf '１\n２\n' > input.txt
 $ ./zen2han < input.txt > output.txt
 $ cat output.txt
 1
 2
-
 ```
+
 ## オプション
 
 - オプションなし: 数字、英字、記号、全角スペースを、すべて変換する
